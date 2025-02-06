@@ -1,0 +1,1 @@
+export const ALERT_HUB_REQUEST = 'ALERT_HUB_REQUEST';

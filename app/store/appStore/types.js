@@ -1,0 +1,7 @@
+// Global Genie Modal
+export const OPEN_GLOBAL_MODAL = 'OPEN_GLOBAL_MODAL';
+
+export const USER_LOGIN_REQUEST_SUCCESS = 'USER_LOGIN_REQUEST_SUCCESS';
+
+
+
