@@ -1,0 +1,1 @@
+export const fcmToken = (state) => state.appReducer.fcmToken;

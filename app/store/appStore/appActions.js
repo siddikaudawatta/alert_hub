@@ -9,4 +9,11 @@ export function enableGlobalModal(payload) {
     };
 }
 
+export function storeFCMToken(payload) {
+    return {
+        type: types.STORE_FCM_TOKEN,
+        payload
+    };
+}
+
 

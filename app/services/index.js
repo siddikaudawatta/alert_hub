@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { fetch } from 'react-native-ssl-pinning';
 
 export default async function api(
@@ -26,11 +27,13 @@ export default async function api(
         }
     })
         .then(response => {
+            Alert.alert(JSON.stringify(response.bodyString
+            ));
             console.log('url->', response);
-            // console.log(`response received ${response}`)
+            return response.json();
         })
         .catch(err => {
-            console.log('url->', err);
+            // console.log('url->', err);
             // console.log(`error: ${err}`)
         })
 }

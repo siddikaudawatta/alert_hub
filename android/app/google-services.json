@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "708396003633",
+    "project_id": "alert-hub-ae8c7",
+    "storage_bucket": "alert-hub-ae8c7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708396003633:android:4d00508b8f6ac4b3868010",
+        "android_client_info": {
+          "package_name": "com.alert_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATM6eOEFLgzLIgqqpDyUfvDLH3ncC-rsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,6 +4,7 @@ const initialState = {
     selectedLanguage: 'en',
     token: '',
     access_token: '',
+    fcmToken: ''
 };
 
 export const appReducer = createReducer(initialState, {
@@ -14,5 +15,12 @@ export const appReducer = createReducer(initialState, {
             access_token: action.payload.access_token
         };
     },
+    [types.STORE_FCM_TOKEN](state, action) {
+        console.log('STORE_FCM_TOKEN--> ', action.payload);
+        return {
+            ...state,
+            fcmToken: action.payload
+        };
+    }
 
 });
