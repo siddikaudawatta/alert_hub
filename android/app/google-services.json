@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:708396003633:android:4d00508b8f6ac4b3868010",
+        "mobilesdk_app_id": "1:708396003633:android:8065bd0f4f0b7a83868010",
         "android_client_info": {
           "package_name": "com.alert_hub"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyATM6eOEFLgzLIgqqpDyUfvDLH3ncC-rsQ"
+          "current_key": "AIzaSyDB8OMuh-soy794DVOeFFQJVBOCVmWpISU"
         }
       ],
       "services": {

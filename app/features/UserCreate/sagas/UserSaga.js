@@ -1,16 +1,21 @@
 
-import { select } from 'redux-saga/effects';
+import { getApp } from '@react-native-firebase/app';
+import { getMessaging, getToken } from '@react-native-firebase/messaging';
 import api from '../../../services/index';
-import {
-    fcmToken
-} from '../redux/selectors';
-
 
 export function* alertHubAPI() {
+    const app = getApp();
+    console.log('app->', app);
+    const messaging = getMessaging(app);
+    console.log('messaging->', messaging);
+    const token = yield getToken(messaging);
 
-    const fcm = yield select(
-        fcmToken
-    );
+    console.log('token->', token);
+    const fcm = token;
+
+    // const fcm = yield select(
+    //     fcmToken
+    // );
 
 
     // let request = {
@@ -26,7 +31,7 @@ export function* alertHubAPI() {
     //     otherContactNo: "755783203"
     // }
 
-    //-https://alert-hub-1c6fe6f73b0a.herokuapp.com/api/profile/otp/send
+    // -https://alert-hub-1c6fe6f73b0a.herokuapp.com/api/profile/otp/send
     let request = {
         mobileNumber: "767312929",
         fcmToken: fcm,
@@ -40,6 +45,8 @@ export function* alertHubAPI() {
 
     );
     console.log('alertHubAPI->', rep);
+
+
 
 }
 

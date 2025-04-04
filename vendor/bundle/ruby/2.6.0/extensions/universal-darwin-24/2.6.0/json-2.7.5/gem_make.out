@@ -1,0 +1,20 @@
+current directory: /Volumes/Siddika/my/Alert_hub/Alert_Hub/vendor/bundle/ruby/2.6.0/gems/json-2.7.5/ext/json/ext/parser
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20241031-13768-1ijyv3.rb extconf.rb
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0/universal-darwin24/rbconfig.rb:21: warning: Insecure world writable dir /Users/user in PATH, mode 040777
+checking for rb_enc_raise() in ruby.h... yes
+checking for rb_enc_interned_str() in ruby.h... no
+checking for whether -std=c99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /Volumes/Siddika/my/Alert_hub/Alert_Hub/vendor/bundle/ruby/2.6.0/gems/json-2.7.5/ext/json/ext/parser
+make "DESTDIR=" clean
+
+current directory: /Volumes/Siddika/my/Alert_hub/Alert_Hub/vendor/bundle/ruby/2.6.0/gems/json-2.7.5/ext/json/ext/parser
+make "DESTDIR="
+compiling parser.c
+linking shared-object json/ext/parser.bundle
+ld: warning: search path '/AppleInternal/Library/BuildRoots/4b66fb3c-7dd0-11ef-b4fb-4a83e32a47e1/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.1.Internal.sdk/usr/local/lib' not found
+
+current directory: /Volumes/Siddika/my/Alert_hub/Alert_Hub/vendor/bundle/ruby/2.6.0/gems/json-2.7.5/ext/json/ext/parser
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 parser.bundle ./.gem.20241031-13768-1ix3s3v/json/ext
