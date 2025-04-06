@@ -4,6 +4,8 @@ import Router from '../Router';
 import LanguageSelectContainer from '../features/UserCreate/Screens/LanguageSelectContainer';
 import OTPContainer from '../features/UserCreate/Screens/OTPContainer';
 import UserSignUpContainer from '../features/UserCreate/Screens/UserSignUpCantainer';
+import DashboardContainer from '../features/Dashboard/DashboardContainer';
+
 
 
 const Stack = createStackNavigator();
@@ -31,6 +33,13 @@ const NavigationStack = () => {
             <Stack.Screen
                 name="LanguageSelectContainer"
                 component={LanguageSelectContainer}
+                options={{
+                    headerShown: false, // Hides the header
+                }}
+            />
+            <Stack.Screen
+                name="DashboardContainer"
+                component={DashboardContainer}
                 options={{
                     headerShown: false, // Hides the header
                 }}

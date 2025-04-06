@@ -38,10 +38,11 @@ export function* otpValidate(action) {
         );
         if (rep && rep.status === 200) {
             Alert.alert(rep.bodyString);
-            // NavigationService.navigate('OTPContainer');
+
             yield put({
                 type: globalTypes.HIDE_LOADING
             });
+            NavigationService.navigate('DashboardContainer');
         } else {
             yield put({
                 type: globalTypes.HIDE_LOADING
@@ -113,3 +114,49 @@ export function* userRegister(action) {
 
 }
 
+export function* userLogin(action) {
+    console.log('userLogin->', action);
+
+    yield put({
+        type: globalTypes.SHOW_LOADING
+    });
+    let token = yield select(fcmToken);
+
+    let request = {
+        username: action.payload.username,
+        password: action.payload.password,
+    }
+
+    try {
+        let rep = yield api(
+
+            'POST',
+            'https://alert-hub.onrender.com/auth/login',
+            request,
+
+        );
+        if (rep && rep.status === 200) {
+            yield put({
+                type: globalTypes.HIDE_LOADING
+            });
+            NavigationService.navigate('DashboardContainer');
+        } else {
+            yield put({
+                type: globalTypes.HIDE_LOADING
+            });
+            Alert.alert("FAIL");
+        }
+        console.log('alertHubAPI->', rep);
+
+    } catch (error) {
+        yield put({
+            type: globalTypes.HIDE_LOADING
+        });
+        Alert.alert("FAIL| Status ");
+        console.log('API ERROR->', error);
+    }
+
+
+
+
+}

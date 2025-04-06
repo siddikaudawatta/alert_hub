@@ -14,5 +14,12 @@ export function alertRegisterequest(payload) {
     };
 }
 
+export function login(payload) {
+    return {
+        type: types.USER_LOGIN_REQUEST,
+        payload: payload
+    };
+}
+
 
 

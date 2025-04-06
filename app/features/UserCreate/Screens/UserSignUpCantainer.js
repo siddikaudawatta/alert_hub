@@ -51,11 +51,10 @@ class UserSignUpContainer extends Component {
     };
 
     login = () => {
-        const { email, password } = this.state;
+        const { phone, password } = this.state;
         let errors = {};
 
-        if (!email.trim()) errors.email = 'Email is required';
-        else if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = 'Email is invalid';
+        if (!phone.trim()) errors.phone = 'Phone number is required';
 
         if (!password) errors.password = 'Password is required';
 
@@ -67,11 +66,11 @@ class UserSignUpContainer extends Component {
         this.setState({ errors: {} });
 
         let userDATA = {
-            userName: email,
-            password,
+            username: phone,
+            password: password,
         };
 
-        this.props.alertHubRequest(userDATA);
+        this.props.login(userDATA);
     };
 
     registerClick = () => {
@@ -118,19 +117,19 @@ class UserSignUpContainer extends Component {
     };
 
     renderLoginForm = () => {
-        const { email, password, isPasswordVisible, errors } = this.state;
+        const { phone, password, isPasswordVisible, errors } = this.state;
 
         return (
             <>
                 <TextInput
                     style={styles.input}
-                    placeholder="Email"
-                    value={email}
+                    placeholder="Mobile No"
+                    value={phone}
                     returnKeyType="next"
-                    onChangeText={(text) => this.setState({ email: text })}
+                    onChangeText={(text) => this.setState({ phone: text })}
                     onSubmitEditing={() => this.loginPasswordRef.current?.focus()}
                 />
-                {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+                {errors.phone && <Text style={styles.errorText}>{errors.email}</Text>}
 
                 <View style={styles.passwordContainer}>
                     <TextInput
@@ -215,7 +214,7 @@ class UserSignUpContainer extends Component {
                 {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
 
                 <View style={styles.phoneContainer}>
-                    <Text style={{ fontSize: 18, marginRight: 8 }}>🇬🇧</Text>
+                    <Text style={{ fontSize: 18, marginRight: 8 }}>🇱🇰+94</Text>
                     <TextInput
                         ref={this.phoneRef}
                         style={[styles.input, { flex: 1, marginBottom: 0 }]}
@@ -323,8 +322,11 @@ function mapStateToProps(state) {
 
 export function mapDispatchToProps(dispatch) {
     return {
-        alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
+        login: (payload) => dispatch(userCreateActions.login(payload)),
         alertRegisterequest: (payload) => dispatch(userCreateActions.alertRegisterequest(payload)),
+
+
+
     };
 }
 
