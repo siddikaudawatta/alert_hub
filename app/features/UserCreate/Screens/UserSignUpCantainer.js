@@ -26,6 +26,7 @@ class UserSignUpContainer extends Component {
             phone: '',
             isPasswordVisible: false,
             isConfirmPasswordVisible: false,
+            errors: {}, // 🔹 Validation errors
         };
 
         // Input Refs
@@ -50,14 +51,28 @@ class UserSignUpContainer extends Component {
     };
 
     login = () => {
-        // NavigationService.navigate('OTPContainer');
-        let userDATA = {
-            userName: 'Siddika',
-            password: '123456'
-        }
-        this.props.alertHubRequest(userDATA);
+        const { email, password } = this.state;
+        let errors = {};
 
-    }
+        if (!email.trim()) errors.email = 'Email is required';
+        else if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = 'Email is invalid';
+
+        if (!password) errors.password = 'Password is required';
+
+        if (Object.keys(errors).length > 0) {
+            this.setState({ errors });
+            return;
+        }
+
+        this.setState({ errors: {} });
+
+        let userDATA = {
+            userName: email,
+            password,
+        };
+
+        this.props.alertHubRequest(userDATA);
+    };
 
     registerClick = () => {
         const {
@@ -67,24 +82,43 @@ class UserSignUpContainer extends Component {
             phone,
             password,
             confirmPassword,
-            isPasswordVisible,
-            isConfirmPasswordVisible,
         } = this.state;
+
+        let errors = {};
+
+        if (!firstName.trim()) errors.firstName = 'First name is required';
+        if (!lastName.trim()) errors.lastName = 'Last name is required';
+        if (!email.trim()) errors.email = 'Email is required';
+        else if (!/^\S+@\S+\.\S+$/.test(email)) errors.email = 'Email is invalid';
+
+        if (!phone.trim()) errors.phone = 'Phone number is required';
+        if (!password) errors.password = 'Password is required';
+        else if (password.length < 6) errors.password = 'Password must be at least 6 characters';
+
+        if (!confirmPassword) errors.confirmPassword = 'Please confirm your password';
+        else if (password !== confirmPassword) errors.confirmPassword = 'Passwords do not match';
+
+        if (Object.keys(errors).length > 0) {
+            this.setState({ errors });
+            return;
+        }
+
+        this.setState({ errors: {} });
 
         let userDATA = {
             mobileNumber: phone,
             fcmToken: '123456',
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
+            firstName,
+            lastName,
+            email,
             pin: password,
-        }
-        this.props.alertRegisterequest(userDATA);
+        };
 
-    }
+        this.props.alertRegisterequest(userDATA);
+    };
 
     renderLoginForm = () => {
-        const { email, password, isPasswordVisible } = this.state;
+        const { email, password, isPasswordVisible, errors } = this.state;
 
         return (
             <>
@@ -96,6 +130,8 @@ class UserSignUpContainer extends Component {
                     onChangeText={(text) => this.setState({ email: text })}
                     onSubmitEditing={() => this.loginPasswordRef.current?.focus()}
                 />
+                {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+
                 <View style={styles.passwordContainer}>
                     <TextInput
                         ref={this.loginPasswordRef}
@@ -110,6 +146,8 @@ class UserSignUpContainer extends Component {
                         <Text style={styles.eyeIcon}>{isPasswordVisible ? '🙈' : '👁️'}</Text>
                     </TouchableOpacity>
                 </View>
+                {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+
                 <TouchableOpacity onPress={this.login} style={styles.button}>
                     <Text style={styles.buttonText}>Log in</Text>
                 </TouchableOpacity>
@@ -127,6 +165,7 @@ class UserSignUpContainer extends Component {
             confirmPassword,
             isPasswordVisible,
             isConfirmPasswordVisible,
+            errors,
         } = this.state;
 
         return (
@@ -160,6 +199,8 @@ class UserSignUpContainer extends Component {
                         onSubmitEditing={() => this.emailRef.current?.focus()}
                     />
                 </View>
+                {errors.firstName && <Text style={styles.errorText}>{errors.firstName}</Text>}
+                {errors.lastName && <Text style={styles.errorText}>{errors.lastName}</Text>}
 
                 <TextInput
                     ref={this.emailRef}
@@ -171,6 +212,7 @@ class UserSignUpContainer extends Component {
                     onChangeText={(text) => this.setState({ email: text })}
                     onSubmitEditing={() => this.phoneRef.current?.focus()}
                 />
+                {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
 
                 <View style={styles.phoneContainer}>
                     <Text style={{ fontSize: 18, marginRight: 8 }}>🇬🇧</Text>
@@ -185,6 +227,7 @@ class UserSignUpContainer extends Component {
                         onSubmitEditing={() => this.passwordRef.current?.focus()}
                     />
                 </View>
+                {errors.phone && <Text style={styles.errorText}>{errors.phone}</Text>}
 
                 <View style={styles.passwordContainer}>
                     <TextInput
@@ -201,6 +244,7 @@ class UserSignUpContainer extends Component {
                         <Text style={styles.eyeIcon}>{isPasswordVisible ? '🙈' : '👁️'}</Text>
                     </TouchableOpacity>
                 </View>
+                {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
 
                 <View style={styles.passwordContainer}>
                     <TextInput
@@ -216,6 +260,7 @@ class UserSignUpContainer extends Component {
                         <Text style={styles.eyeIcon}>{isConfirmPasswordVisible ? '🙈' : '👁️'}</Text>
                     </TouchableOpacity>
                 </View>
+                {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword}</Text>}
 
                 <TouchableOpacity onPress={this.registerClick} style={styles.button}>
                     <Text style={styles.buttonText}>Register</Text>
@@ -272,26 +317,18 @@ class UserSignUpContainer extends Component {
     }
 }
 
-UserSignUpContainer.propTypes = {};
-
 function mapStateToProps(state) {
-    return {
-
-    };
+    return {};
 }
 
 export function mapDispatchToProps(dispatch) {
     return {
-        // alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
+        alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
         alertRegisterequest: (payload) => dispatch(userCreateActions.alertRegisterequest(payload)),
-
     };
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(UserSignUpContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSignUpContainer);
 
 const styles = StyleSheet.create({
     container: {
@@ -348,6 +385,12 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         fontSize: 14,
         backgroundColor: '#fff',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 12,
+        marginBottom: 8,
+        marginTop: -12,
     },
     passwordContainer: {
         flexDirection: 'row',
