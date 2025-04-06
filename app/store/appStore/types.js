@@ -5,6 +5,12 @@ export const USER_LOGIN_REQUEST_SUCCESS = 'USER_LOGIN_REQUEST_SUCCESS';
 
 export const STORE_FCM_TOKEN = 'STORE_FCM_TOKEN';
 
+export const SHOW_LOADING = 'SHOW_LOADING';
+
+export const HIDE_LOADING = 'HIDE_LOADING';
+
+
+
 
 
 

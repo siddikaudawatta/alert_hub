@@ -7,3 +7,12 @@ export function alertHubRequest(payload) {
     };
 }
 
+export function alertRegisterequest(payload) {
+    return {
+        type: types.USER_REGISTER_REQUEST,
+        payload: payload
+    };
+}
+
+
+

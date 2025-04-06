@@ -3,12 +3,19 @@ import {
 } from '../redux/selectors';
 
 
-import { select } from 'redux-saga/effects';
+import { delay, put, select } from 'redux-saga/effects';
 import api from '../../../services/index';
+import * as globalTypes from '../../../store/appStore/types';
 
 export function* login(payload) {
 
-
+    yield put({
+        type: globalTypes.SHOW_LOADING
+    });
+    //yield delay(2000); // simulate API
+    yield put({
+        type: globalTypes.HIDE_LOADING
+    });
     let token = yield select(fcmToken);
 
     let request = {
@@ -28,5 +35,4 @@ export function* login(payload) {
 
 
 }
-
 

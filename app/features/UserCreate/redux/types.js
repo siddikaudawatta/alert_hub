@@ -1,1 +1,2 @@
 export const USER_LOGIN = 'USER_LOGIN';
+export const USER_REGISTER_REQUEST = 'USER_REGISTER_REQUEST';

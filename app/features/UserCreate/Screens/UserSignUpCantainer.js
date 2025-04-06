@@ -59,6 +59,30 @@ class UserSignUpContainer extends Component {
 
     }
 
+    registerClick = () => {
+        const {
+            firstName,
+            lastName,
+            email,
+            phone,
+            password,
+            confirmPassword,
+            isPasswordVisible,
+            isConfirmPasswordVisible,
+        } = this.state;
+
+        let userDATA = {
+            mobileNumber: phone,
+            fcmToken: '123456',
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            pin: password,
+        }
+        this.props.alertRegisterequest(userDATA);
+
+    }
+
     renderLoginForm = () => {
         const { email, password, isPasswordVisible } = this.state;
 
@@ -193,7 +217,7 @@ class UserSignUpContainer extends Component {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={this.registerClick} style={styles.button}>
                     <Text style={styles.buttonText}>Register</Text>
                 </TouchableOpacity>
             </>
@@ -259,6 +283,7 @@ function mapStateToProps(state) {
 export function mapDispatchToProps(dispatch) {
     return {
         alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
+        alertRegisterequest: (payload) => dispatch(userCreateActions.alertRegisterequest(payload)),
 
     };
 }

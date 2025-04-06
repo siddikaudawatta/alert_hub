@@ -4,7 +4,8 @@ const initialState = {
     selectedLanguage: 'en',
     token: '',
     access_token: '',
-    fcmToken: ''
+    fcmToken: '',
+    isLoading: false,
 };
 
 export const appReducer = createReducer(initialState, {
@@ -20,6 +21,20 @@ export const appReducer = createReducer(initialState, {
         return {
             ...state,
             fcmToken: action.payload
+        };
+    },
+    [types.SHOW_LOADING](state, action) {
+
+        return {
+            ...state,
+            isLoading: true
+        };
+    },
+    [types.HIDE_LOADING](state, action) {
+
+        return {
+            ...state,
+            isLoading: false
         };
     }
 

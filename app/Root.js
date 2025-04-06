@@ -12,9 +12,9 @@ import {
 import React, { Component } from 'react';
 import { Alert, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import LoadingScreen from './components/LoadingScreen';
 import Navigator from './navigations';
 import * as appActions from './store/appStore/appActions';
-
 export class Root extends Component {
     constructor(props) {
         super(props);
@@ -95,10 +95,12 @@ export class Root extends Component {
 
 
     render() {
+        const { isLoading } = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
                 <Navigator />
+                {isLoading && <LoadingScreen />}
             </SafeAreaView>
         );
     }
@@ -106,7 +108,7 @@ export class Root extends Component {
 
 function mapStateToProps(state) {
     return {
-
+        isLoading: state.appReducer.isLoading,
     };
 }
 
