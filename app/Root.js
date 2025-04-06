@@ -41,11 +41,11 @@ export class Root extends Component {
             authStatus === AuthorizationStatus.AUTHORIZED ||
             authStatus === AuthorizationStatus.PROVISIONAL;
 
-
+        console.log('initFCM', enabled);
         if (!enabled) {
             await requestPermission(messaging);
         }
-        console.log('enabled', messaging);
+        console.log('initFCM', messaging);
         try {
             const token = await getToken(messaging);
             this.props.storeFCMToken(token);

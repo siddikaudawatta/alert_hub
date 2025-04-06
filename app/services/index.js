@@ -30,11 +30,11 @@ export default async function api(
                 // Alert.alert(JSON.stringify(response.bodyString
                 // ));
                 console.log('url->', response);
-                resolve(JSON.stringify(response.bodyString))
-
+                resolve(response);
 
             })
             .catch(err => {
+                reject(err);
                 // console.log('url->', err);
                 // console.log(`error: ${err}`)
             })

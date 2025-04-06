@@ -282,7 +282,7 @@ function mapStateToProps(state) {
 
 export function mapDispatchToProps(dispatch) {
     return {
-        alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
+        // alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
         alertRegisterequest: (payload) => dispatch(userCreateActions.alertRegisterequest(payload)),
 
     };
