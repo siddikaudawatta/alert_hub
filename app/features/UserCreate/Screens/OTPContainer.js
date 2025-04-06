@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
+import * as userCreateActions from '../redux/actions';
 
-export default class OTPContainer extends Component {
+class OTPContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,10 +27,11 @@ export default class OTPContainer extends Component {
     handleVerify = () => {
         const { otp } = this.state;
         const code = otp.join('');
-        const correctCode = '5137'; // Sample correct OTP
+        // const correctCode = '5137'; // Sample correct OTP
 
-        if (code === correctCode) {
-            alert('OTP Verified!');
+        if (otp.length === 4) {
+            // alert('OTP Verified!');
+            this.props.otpValidate(code)
         } else {
             this.setState({ isError: true });
         }
@@ -69,7 +72,29 @@ export default class OTPContainer extends Component {
             </View>
         );
     }
+
 }
+OTPContainer.propTypes = {};
+
+function mapStateToProps(state) {
+    return {
+
+    };
+}
+
+export function mapDispatchToProps(dispatch) {
+    return {
+        // alertHubRequest: (payload) => dispatch(userCreateActions.alertHubRequest(payload)),
+        otpValidate: (payload) => dispatch(userCreateActions.otpValidate(payload)),
+
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(OTPContainer);
+
 
 const styles = StyleSheet.create({
     container: {

@@ -3,7 +3,7 @@ import {
     regData
 } from '../redux/selectors';
 
-
+import { Alert } from 'react-native';
 import { delay, put, select } from 'redux-saga/effects';
 import api from '../../../services/index';
 import * as globalTypes from '../../../store/appStore/types';
@@ -11,30 +11,43 @@ import * as types from '../redux/types';
 
 import NavigationService from '../../../navigations/NavigationService';
 
-export function* otpValidate(payload) {
+export function* otpValidate(action) {
+    console.log('otpValidate->', action);
 
     yield put({
         type: globalTypes.SHOW_LOADING
     });
-    //yield delay(2000); // simulate API
-    yield put({
-        type: globalTypes.HIDE_LOADING
-    });
     let userRgData = yield select(regData);
-
+    console.log('userRgData->', userRgData);
     let request = {
-        mobileNumber: "767312929",
-        fcmToken: token,
+        firstName: userRgData.firstName,
+        lastName: userRgData.lastName,
+        mobileNumber: userRgData.mobileNumber,
+        email: userRgData.firstName,
+        pin: userRgData.pin,
+        otp: action.payload,
+
     }
 
-    let rep = yield api(
+    try {
+        let rep = yield api(
+            'POST',
+            'https://alert-hub.onrender.com/api/profile/validate/otp',
+            request,
 
-        'POST',
-        'https://alert-hub.onrender.com/api/profile/otp/send',
-        request,
+        );
+        if (rep && rep.status === 200) {
+            Alert.alert(rep.bodyString);
+            // NavigationService.navigate('OTPContainer');
+            yield put({
+                type: globalTypes.HIDE_LOADING
+            });
+        }
+        console.log('alertHubAPI->', rep);
 
-    );
-    console.log('alertHubAPI->', rep);
+    } catch (error) {
+        console.log('API ERROR->', error);
+    }
 
 
 

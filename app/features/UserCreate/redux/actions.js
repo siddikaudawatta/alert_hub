@@ -1,6 +1,6 @@
 import * as types from './types';
 
-export function alertHubRequest(payload) {
+export function otpValidate(payload) {
     return {
         type: types.USER_LOGIN,
         payload: payload
