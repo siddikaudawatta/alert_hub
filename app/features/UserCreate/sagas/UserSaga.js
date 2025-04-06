@@ -42,10 +42,19 @@ export function* otpValidate(action) {
             yield put({
                 type: globalTypes.HIDE_LOADING
             });
+        } else {
+            yield put({
+                type: globalTypes.HIDE_LOADING
+            });
+            Alert.alert("FAIL");
         }
         console.log('alertHubAPI->', rep);
 
     } catch (error) {
+        yield put({
+            type: globalTypes.HIDE_LOADING
+        });
+        Alert.alert("FAIL| Status ");
         console.log('API ERROR->', error);
     }
 
@@ -83,10 +92,19 @@ export function* userRegister(action) {
             yield put({
                 type: globalTypes.HIDE_LOADING
             });
+        } else {
+            yield put({
+                type: globalTypes.HIDE_LOADING
+            });
+            Alert.alert("FAIL");
         }
         console.log('alertHubAPI->', rep);
 
     } catch (error) {
+        yield put({
+            type: globalTypes.HIDE_LOADING
+        });
+        Alert.alert("FAIL| Status ");
         console.log('API ERROR->', error);
     }
 
