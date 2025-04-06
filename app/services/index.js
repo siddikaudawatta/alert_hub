@@ -1,4 +1,3 @@
-import { Alert } from 'react-native';
 import { fetch } from 'react-native-ssl-pinning';
 
 export default async function api(
@@ -12,28 +11,35 @@ export default async function api(
             ? undefined
             : '';
     console.log('url->', bodydata);
-    fetch(url, {
-        method: method,
-        timeoutInterval: 40000, // milliseconds
-        body: bodydata,
-        disableAllSecurity: true,
-        // your certificates array (needed only in android) ios will pick it automatically
-        // pkPinning: false,
-        // sslPinning: {
-        //     certs: ["cert1", "cert2"] // your certificates name (without extension), for example cert1.cer, cert2.cer
-        // },
-        headers: {
-            Accept: "application/json; charset=utf-8",
-        }
-    })
-        .then(response => {
-            Alert.alert(JSON.stringify(response.bodyString
-            ));
-            console.log('url->', response);
-            return response.json();
+    return new Promise(async (resolve, reject) => {
+        fetch(url, {
+            method: method,
+            timeoutInterval: 40000, // milliseconds
+            body: bodydata,
+            disableAllSecurity: true,
+            // your certificates array (needed only in android) ios will pick it automatically
+            // pkPinning: false,
+            // sslPinning: {
+            //     certs: ["cert1", "cert2"] // your certificates name (without extension), for example cert1.cer, cert2.cer
+            // },
+            headers: {
+                Accept: "application/json; charset=utf-8",
+            }
         })
-        .catch(err => {
-            // console.log('url->', err);
-            // console.log(`error: ${err}`)
-        })
+            .then(response => {
+                // Alert.alert(JSON.stringify(response.bodyString
+                // ));
+                console.log('url->', response);
+                resolve(JSON.stringify(response.bodyString))
+
+
+            })
+            .catch(err => {
+                // console.log('url->', err);
+                // console.log(`error: ${err}`)
+            })
+
+    });
+
+
 }

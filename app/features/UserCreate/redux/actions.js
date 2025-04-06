@@ -1,8 +1,9 @@
 import * as types from './types';
 
-export function alertHubRequest() {
+export function alertHubRequest(payload) {
     return {
-        type: types.ALERT_HUB_REQUEST
+        type: types.USER_LOGIN,
+        payload: payload
     };
 }
 

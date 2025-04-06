@@ -1,1 +1,1 @@
-export const ALERT_HUB_REQUEST = 'ALERT_HUB_REQUEST';
+export const USER_LOGIN = 'USER_LOGIN';

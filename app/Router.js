@@ -7,7 +7,7 @@ class Router extends Component {
     componentDidMount() {
         console.log('Router-mounted');
         setTimeout(() => {
-            NavigationService.fullReset('UserSignUpContainer');
+            NavigationService.fullReset('LanguageSelectContainer');
         }, 0);
     }
 

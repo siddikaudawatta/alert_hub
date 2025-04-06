@@ -1,9 +1,9 @@
 import { takeLatest } from 'redux-saga/effects';
 import * as types from '../redux/types';
-import { alertHubAPI } from './UserSaga';
+import { login } from './UserSaga';
 
 export const userCreateSaga = [
-    takeLatest(types.ALERT_HUB_REQUEST, alertHubAPI),
+    takeLatest(types.USER_LOGIN, login),
 
 
 ];
