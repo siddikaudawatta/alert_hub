@@ -139,6 +139,12 @@ export function* userLogin(action) {
             yield put({
                 type: globalTypes.HIDE_LOADING
             });
+            yield put({
+                type: globalTypes.USER_LOGIN_REQUEST_SUCCESS,
+                payload: {
+                    access_token: rep.bodyString
+                }
+            });
             NavigationService.navigate('DashboardContainer');
         } else {
             yield put({

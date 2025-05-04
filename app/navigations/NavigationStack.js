@@ -5,6 +5,7 @@ import LanguageSelectContainer from '../features/UserCreate/Screens/LanguageSele
 import OTPContainer from '../features/UserCreate/Screens/OTPContainer';
 import UserSignUpContainer from '../features/UserCreate/Screens/UserSignUpCantainer';
 import DashboardContainer from '../features/Dashboard/DashboardContainer';
+import MapContainer from '../features/Dashboard/MapContainer';
 
 
 
@@ -40,6 +41,13 @@ const NavigationStack = () => {
             <Stack.Screen
                 name="DashboardContainer"
                 component={DashboardContainer}
+                options={{
+                    headerShown: false, // Hides the header
+                }}
+            />
+            <Stack.Screen
+                name="MapContainer"
+                component={MapContainer}
                 options={{
                     headerShown: false, // Hides the header
                 }}

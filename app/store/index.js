@@ -6,7 +6,7 @@ import { persistCombineReducers, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import rootReducers from './combinedReducers'; // where reducers is a object of reducers
 import sagas from './combinedSagas';
-
+import { createWhitelistFilter } from 'redux-persist-transform-filter';
 const config = {
     timeout: 50000,
     key: 'root',
@@ -15,6 +15,9 @@ const config = {
         'appReducer',
     ],
     debug: __DEV__, //to get useful logging
+    transforms: [
+        createWhitelistFilter('appReducer', ['access_token']),
+    ]
 
 };
 
