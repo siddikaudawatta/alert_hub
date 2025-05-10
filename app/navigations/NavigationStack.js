@@ -4,8 +4,10 @@ import Router from '../Router';
 import LanguageSelectContainer from '../features/UserCreate/Screens/LanguageSelectContainer';
 import OTPContainer from '../features/UserCreate/Screens/OTPContainer';
 import UserSignUpContainer from '../features/UserCreate/Screens/UserSignUpCantainer';
-import DashboardContainer from '../features/Dashboard/DashboardContainer';
-import MapContainer from '../features/Dashboard/MapContainer';
+import DashboardContainer from '../features/Dashboard/Screens/DashboardContainer';
+import MapContainer from '../features/Dashboard/Screens/MapContainer';
+import BusinessRegScreen from '../features/Dashboard/Screens/BusinessRegScreen';
+
 
 
 
@@ -48,6 +50,13 @@ const NavigationStack = () => {
             <Stack.Screen
                 name="MapContainer"
                 component={MapContainer}
+                options={{
+                    headerShown: false, // Hides the header
+                }}
+            />
+            <Stack.Screen
+                name="BusinessRegScreen"
+                component={BusinessRegScreen}
                 options={{
                     headerShown: false, // Hides the header
                 }}

@@ -317,7 +317,9 @@ class UserSignUpContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+
+    };
 }
 
 export function mapDispatchToProps(dispatch) {
